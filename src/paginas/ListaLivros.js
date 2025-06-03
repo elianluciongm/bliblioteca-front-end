@@ -2,15 +2,15 @@ import TituloLista from "../componentes/TituloLista";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function ListaCategoria() {
+export default function ListaLivros() {
   // Declarando uma variavel useState
   const [dados, setDados] = useState([]);
 
   const listar = async () => {
-    let { data } = await axios.get(`http://localhost:4000/categoria`);
+    let { data } = await axios.get(`http://localhost:4000/livro`);
     console.log(data);
     setDados(data);
-  }  
+  }
 
   useEffect(() => {
     listar();
@@ -19,12 +19,11 @@ export default function ListaCategoria() {
   return (
     <>
       <TituloLista
-        titulo="Categorias"
-        descrição="Gerencie aqui as categorias dos livros da biblioteca"
-        rota="/cadastrocategoria"
-        botao="Nova Categoria"
+        titulo="Livros"
+        descrição="Gerencie aqui os livros da biblioteca"
+        rota="/cadastrolivro"
+        botao="Novo Livro"
       />
-
       <div className="container">
         <div className="row">
           <div className="col">
@@ -33,19 +32,23 @@ export default function ListaCategoria() {
                 <tr>
                   <th scope="col">Alterar</th>
                   <th scope="col">Código</th>
-                  <th scope="col">Categoria</th>
+                  <th scope="col">Edição</th>
+                  <th scope="col">Páginas</th>
+                  <th scope="col">Titulo</th>
                 </tr>
               </thead>
               <tbody>
                 {dados.map((d, i) => (
-                  <tr key={d.idcategoria}>
+                  <tr key={d.idlivro}>
                     <td>
-                      <a className="btn btn-primary" href={`/cadastrocategoria/${d.idcategoria}`}>
+                      <a className="btn btn-primary" href={`/cadastrolivro/${d.idlivro}`}>
                         Alterar
                       </a>
                     </td>
-                    <td>{d.idcategoria}</td>
-                    <td>{d.nomecategoria}</td>
+                    <td>{d.idlivro}</td>
+                    <td>{d.edicao}</td>
+                    <td>{d.paginas}</td>
+                    <td>{d.titulo}</td>
                   </tr>
                 ))}
               </tbody>

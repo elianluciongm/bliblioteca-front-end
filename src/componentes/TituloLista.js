@@ -1,21 +1,20 @@
 export default function TituloLista(props) {
-    return(
-        <>
+  
+  return (
     <div className="container">
-    <div className="row justify-content-md-center">
+      <div className="row justify-content-md-center mt-4">
         <div className="col">
-        <div className="alert alert-primary" role="alert">
+          <div className="alert alert-primary" role="alert">
             <h4 className="alert-heading">{props.titulo}</h4>
             <p>{props.descrição}</p>
             <hr />
             <a href={props.rota} className="btn btn-primary btn-md">
-                Novo
+              {props.botao}
             </a>
+          </div>
         </div>
-        </div>
+      </div>
+      <br />
     </div>
-    </div>
-        </>
-    );
-
+  );
 }

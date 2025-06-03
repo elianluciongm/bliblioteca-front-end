@@ -2,15 +2,14 @@ import TituloLista from "../componentes/TituloLista";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function ListaCategoria() {
+export default function ListaAutor() {
   // Declarando uma variavel useState
   const [dados, setDados] = useState([]);
 
   const listar = async () => {
-    let { data } = await axios.get(`http://localhost:4000/categoria`);
-    console.log(data);
+    let { data } = await axios.get(`http://localhost:4000/autor`);
     setDados(data);
-  }  
+  }
 
   useEffect(() => {
     listar();
@@ -19,10 +18,10 @@ export default function ListaCategoria() {
   return (
     <>
       <TituloLista
-        titulo="Categorias"
-        descrição="Gerencie aqui as categorias dos livros da biblioteca"
-        rota="/cadastrocategoria"
-        botao="Nova Categoria"
+        titulo="Autores"
+        descrição="Gerencie aqui os autores dos livros da biblioteca"
+        rota="/cadastroautor"
+        botao="Novo Autor"
       />
 
       <div className="container">
@@ -33,19 +32,29 @@ export default function ListaCategoria() {
                 <tr>
                   <th scope="col">Alterar</th>
                   <th scope="col">Código</th>
-                  <th scope="col">Categoria</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Nascimento</th>
+                  <th scope="col">Foto</th>
+
                 </tr>
               </thead>
               <tbody>
                 {dados.map((d, i) => (
-                  <tr key={d.idcategoria}>
+                  <tr>
                     <td>
-                      <a className="btn btn-primary" href={`/cadastrocategoria/${d.idcategoria}`}>
+                      <a className="btn btn-primary" href={`/cadastroautor/${d.idautor}`}>
                         Alterar
                       </a>
                     </td>
-                    <td>{d.idcategoria}</td>
-                    <td>{d.nomecategoria}</td>
+                    <td>{d.idautor}</td>
+                    <td>{d.nomeautor}</td>
+                    <td>{d.nascimento}</td>
+                    <td>
+                      <img className="img-thumbnail"
+                        src={d.foto}
+                        style={{ width: '80px' }} />
+                    </td>
+
                   </tr>
                 ))}
               </tbody>
