@@ -16,7 +16,7 @@ export default function FormFuncionario() {
   const [salario, setSalario] = useState('');
   const [contratacao, setContratacao] = useState('');
   const [demissao, setDemissao] = useState('');
-  const [ativo, setAtivo] = useState('');
+  const [ativo, setAtivo] = useState(false);
   const [senha, setSenha] = useState('');
   const [token, setToken] = useState('');
 
@@ -70,6 +70,7 @@ export default function FormFuncionario() {
       cpf,
       email,
       telefone,
+      nascimento,
       salario,
       contratacao,
       demissao,
